@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPackage name="Recon Drone Mod"
+    modversion="1.0"
+    corepackage="False"
+    gameversion="1.8.8.0"
+    steamworkshopid="0">
+    <Item file="Items/drone_items.xml" />
+    <Other file="Lua/Autorun/DroneControl.lua" />
+</ContentPackage>

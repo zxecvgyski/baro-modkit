@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <!-- 無人水下滑板 -->
+    <Item name="Drone Scooter"
+        identifier="dronescooter"
+        category="Vehicles,Drone"
+        Tags="smallitem,signal,drone,placeable">
+        <Sprite texture="Content/Items/Diving/Scooter.png"
+            sourcerect="0,0,140,102"
+            depth="0.55" origin="0.5,0.5" />
+        <Body width="120" height="60" density="10" />
+        <!-- 可以在水中放置 -->
+        <Placeable canbepicked="true" msg="Place Scooter" />
+
+        <!-- 電池槽 -->
+        <ItemContainer capacity="1" maxstacksize="1"
+            hideitems="true" containedstateindicatorstyle="battery">
+            <SlotIcon slotindex="0"
+                texture="Content/UI/StatusMonitorUI.png"
+                sourcerect="128,448,64,64"
+                origin="0.5,0.5" />
+            <Containable items="mobilebattery" />
+        </ItemContainer>
+
+        <!-- 無線通訊，可設定 Channel -->
+        <WifiComponent range="30000" channel="1" MinChatMessageInterval="0.1" />
+
+        <!-- 引擎燈光&音效 -->
+        <LightComponent lightcolor="220,255,150,200"
+            range="200" powerconsumption="0" IsOn="true">
+            <LightTexture texture="Content/Lights/lightcone.png"
+                origin="-0.01,0.5" size="1.0,1.0" />
+        </LightComponent>
+        <SoundComponent>
+            <Sound identifier="scooter_loop"
+                file="Content/Items/Diving/ScooterLoop.ogg"
+                loop="true" volume="0.5" range="300" />
+        </SoundComponent>
+
+        <!-- 頻道＋電量面板（按 Q 開啟） -->
+        <CustomInterface selectkey="Select"
+            canbeselected="true"
+            closeable="true">
+            <GuiFrame style="ToolTip"
+                relativesize="0.25,0.25"
+                anchor="Center"
+                padding="8">
+                <VerticalLayout spacing="4">
+                    <Label id="lblChannel" text="頻道：1"
+                        font="Gothic" textalignment="Center" />
+                    <Label id="lblBattery" text="電量：100%"
+                        font="Gothic" textalignment="Center" />
+                    <HorizontalLayout spacing="8">
+                        <Button id="btnChDown" text="－" style="ToolButton" />
+                        <Button id="btnChUp" text="＋" style="ToolButton" />
+                    </HorizontalLayout>
+                </VerticalLayout>
+            </GuiFrame>
+        </CustomInterface>
+    </Item>
+
+    <!-- 手持終端 -->
+    <Item name="Scooter Terminal"
+        identifier="scooterterminal"
+        category="Tools,Electronics"
+        Tags="smallitem,signal,interactive">
+        <Sprite texture="Content/Items/ScooterTerminal.png"
+            sourcerect="0,0,64,64"
+            depth="0.8" origin="0.5,0.5" />
+        <Body width="32" height="32" density="5" />
+        <Fabricate suitablefabricators="fabricator"
+            requiredtime="30">
+            <RequiredItem identifier="fpgacircuit" />
+            <RequiredItem identifier="batterycell" />
+        </Fabricate>
+        <WifiComponent range="30000" channel="1" MinChatMessageInterval="0.1" />
+        <Holdable slots="Any,RightHand,LeftHand"
+            pickkey="Use"
+            msg="ItemMsgPickUpSelect"
+            aimpos="60,0" holdangle="0" />
+        <CustomInterface selectkey="Select"
+            canbeselected="true"
+            closeable="true">
+            <GuiFrame style="ToolTip"
+                relativesize="0.25,0.25"
+                anchor="Center"
+                padding="8">
+                <VerticalLayout spacing="4">
+                    <Label id="lblChannel" text="頻道：1"
+                        font="Gothic" textalignment="Center" />
+                    <Label id="lblBattery" text="電量：100%"
+                        font="Gothic" textalignment="Center" />
+                    <HorizontalLayout spacing="8">
+                        <Button id="btnChDown" text="－" style="ToolButton" />
+                        <Button id="btnChUp" text="＋" style="ToolButton" />
+                    </HorizontalLayout>
+                </VerticalLayout>
+            </GuiFrame>
+        </CustomInterface>
+    </Item>
+</Items>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <Item name="Simple Adder" identifier="simpleadder" category="Electrical" Tags="smallitem"
+        maxstacksize="1" scale="0.5" impactsoundtag="impact_metal_light" grabwhenselected="true">
+        <!-- 視覺與物理 -->
+        <Sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="192,258,64,64"
+            depth="0.8" origin="0.5,0.5" />
+        <Body width="32" height="32" density="30" />
+        <!-- 互動面板：兩個輸入、一個輸出 -->
+        <CircuitBox selectkey="Select" canbeselected="true" msg="ItemMsgInteractSelect"
+            allowuioverlap="true">
+            <GuiFrame relativesize="0.5,0.5" minsize="200,150" style="ItemUI" anchor="Center" />
+            <input name="in1" displayname="Input 1" />
+            <input name="in2" displayname="Input 2" />
+            <output name="out" displayname="Output" />
+        </CircuitBox>
+    </Item>
+</Items>

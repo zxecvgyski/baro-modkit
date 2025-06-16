@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentpackage
+    name="TestAllTags"
+    modversion="1.0.0"
+    corepackage="False"
+    steamworkshopid="0000000000"
+    gameversion="1.8.8.1"
+    expectedhash="0123456789ABCDEF0123456789ABCDEF">
+
+    <!-- 遊戲邏輯檔案 -->
+    <Item file="%ModDir%/Items/test_items.xml" />
+    <Afflictions file="%ModDir%/Afflictions/test_afflictions.xml" />
+    <Missions file="%ModDir%/Missions/test_missions.xml" />
+    <NPCSets file="%ModDir%/NPC/test_npcs.xml" />
+    <RandomEvents file="%ModDir%/Events/test_random_events.xml" />
+    <Particles file="%ModDir%/Particles/test_particles.xml" />
+    <Sounds file="%ModDir%/Audio/test_sounds.xml" />
+    <Text file="%ModDir%/Text/English.xml" />
+    <UIStyle file="%ModDir%/UI/test_ui_style.xml" />
+
+    <!-- 地圖與場景 -->
+    <Submarine file="%ModDir%/Submarines/test_submarine.sub" />
+    <Wreck file="%ModDir%/Wrecks/test_wreck.sub" />
+    <BeaconStation file="%ModDir%/Beacons/test_beacon_station.sub" />
+    <OutpostModule file="%ModDir%/Modules/test_outpost_module.sub" />
+    <EnemySubmarine file="%ModDir%/EnemySubmarines/test_enemy_sub.sub" />
+
+    <!-- 資源與結構 -->
+    <Structure file="%ModDir%/Structures/test_structure_prefabs.xml" />
+    <LevelGenerationParameters file="%ModDir%/MapBiomes/test_biomes.xml" />
+    <LocationTypes file="%ModDir%/Map/test_location_types.xml" />
+    <ItemAssembly file="%ModDir%/ItemAssembly/test_item_assembly.xml" />
+    <Jobs file="%ModDir%/NPC/test_jobs.xml" />
+    <Talents file="%ModDir%/Talents/test_talents.xml" />
+    <Factions file="%ModDir%/Map/test_factions.xml" />
+    <BackgroundCreaturePrefabs file="%ModDir%/BackgroundCreatures/test_background_creatures.xml" />
+
+    <!-- 其他資源 -->
+    <Other file="%ModDir%/Textures/test_texture.png" />
+    <None file="%ModDir%/README.txt" />
+
+</contentpackage>
