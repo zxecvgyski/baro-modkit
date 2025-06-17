@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+
+    <!-- A) 遙控器 -->
+    <Item name="Injector Remote"
+        identifier="remoteinjector"
+        category="Tools,Electronics"
+        tags="smallitem,signal,interactive">
+        <!-- 圖示、物理 -->
+        <Sprite texture="Content/Items/Electronics/Radio.png"
+            sourcerect="0,0,64,64" origin="0.5,0.5" depth="0.8" />
+        <Body width="32" height="32" density="5" />
+        <Holdable slots="Any,RightHand,LeftHand"
+            pickkey="Use"
+            msg="ItemMsgPickUpSelect"
+            aimpos="40,0"
+            holdangle="0" />
+
+        <!-- 無線通訊 -->
+        <WifiComponent range="30000" channel="1" MinChatMessageInterval="0.1" />
+
+        <!-- 自訂頻道面板 -->
+        <CustomInterface selectkey="Select"
+            canbeselected="true"
+            closeable="true">
+            <GuiFrame style="ToolTip"
+                relativesize="0.25,0.2"
+                anchor="Center" padding="8">
+                <VBox spacing="4">
+                    <Label id="lblCh" text="頻道：1" font="Gothic" textalignment="Center" />
+                    <HBox spacing="8">
+                        <Button id="btnDown" text="－" style="ToolButton" />
+                        <Button id="btnUp" text="＋" style="ToolButton" />
+                    </HBox>
+                    <Button id="btnFire" text="注射" style="ToolButton" />
+                </VBox>
+            </GuiFrame>
+        </CustomInterface>
+    </Item>
+
+    <!-- B) 注射項圈 -->
+    <Item name="Injection Collar"
+        identifier="remoteinjector_collar"
+        category="Equipment,Medical"
+        tags="smallitem,signal"
+        allowasextracargo="true"
+        description="可放置一支針筒／藥劑，用於遠端注射"
+        cargocontaineridentifier="metalcrate">
+        <!-- 頭部可穿戴 -->
+        <InventoryIcon texture="Content/Items/Electronics/Radio.png"
+            sourcerect="0,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="Content/Items/Electronics/Radio.png"
+            sourcerect="0,0,64,64" origin="0.5,0.5" depth="0.6" />
+        <Body radius="20" density="10" />
+
+        <!-- 放一支藥劑（syringe 或 chem） -->
+        <ItemContainer capacity="1" maxstacksize="1" autoinject="true">
+            <SlotIcon slotindex="0"
+                texture="Content/UI/StatusMonitorUI.png"
+                sourcerect="384,448,64,64"
+                origin="0.5,0.5" />
+            <Containable items="chem,syringe" />
+        </ItemContainer>
+
+        <!-- 可穿戴於頭部 -->
+        <Wearable limbtype="Head" slots="Any,Headset" displaycontainedstatus="true">
+            <sprite texture="Content/Items/Electronics/Radio.png"
+                sourcerect="0,0,64,64"
+                limb="Head" origin="0.5,0.5" scale="0.7" />
+        </Wearable>
+
+        <!-- 無線通訊，同步頻道 -->
+        <WifiComponent range="30000" channel="1" MinChatMessageInterval="0.1" />
+
+        <!-- 設置頻道面板 -->
+        <CustomInterface selectkey="Select"
+            canbeselected="true"
+            closeable="true">
+            <GuiFrame style="ToolTip"
+                relativesize="0.25,0.2"
+                anchor="Center" padding="8">
+                <VBox spacing="4">
+                    <Label id="lblCh" text="頻道：1" font="Gothic" textalignment="Center" />
+                    <HBox spacing="8">
+                        <Button id="btnDown" text="－" style="ToolButton" />
+                        <Button id="btnUp" text="＋" style="ToolButton" />
+                    </HBox>
+                </VBox>
+            </GuiFrame>
+        </CustomInterface>
+    </Item>
+</Items>

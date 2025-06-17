@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPackage name="Remote Injector Collar Mod"
+    modversion="1.0"
+    corepackage="false"
+    gameversion="1.8.8.0">
+    <Item file="Items/remote_injector_items.xml" />
+    <Other file="Lua/Autorun/RemoteInjectorControl.lua" />
+</ContentPackage>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    以下範例摘自官方「可種植植物」與「園藝工具」的核心 XML 定義，省略了非必要項目，只保留最基本、必須的標籤與屬性，並以繁體中文註解說明。
+-->
+
+
+<Items>
+
+    <!-- 一、種子定義（GrowablePlantsExample.xml）-->
+
+    <!-- 範例種子：長藤橘果 -->
+    <Item identifier="creepingorangevineseed"
+        category="Misc"
+        tags="smallitem,seed,plantitem"
+        maxstacksize="8"
+        scale="0.5">
+        <!-- 外觀與物理 -->
+        <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png"
+            sourcerect="830,636,31,30"
+            origin="0.5,0.5" depth="0.2" />
+        <Body radius="15" density="10" />
+
+        <!-- 栽培行為 -->
+        <!-- growthspeed生長速度 -->
+        <!-- pickingtime採收時間 -->
+        <!-- maximumvines最多藤蔓數 -->
+        <!-- maxhealth最大生命值 -->
+        <!-- hardiness抗性 -->
+        <!-- floodtolerance耐淹水 -->
+        <!-- seedrate自我繁殖率 -->
+        <!-- productrate產量效率 -->
+        <!-- flowerquantity花朵數量 -->
+        <!-- baseflowerscale花朵大小 -->
+        <!-- vinescale藤蔓大小 -->
+        <!-- flowertint花色 -->
+        <!-- vinetint藤色 -->
+        <Growable
+            growthspeed="0.07"
+            pickingtime="3"
+            maximumvines="24"
+            maxhealth="500"
+            hardiness="0.15"
+            floodtolerance="0.4"
+            seedrate="0"
+            productrate="0.022"
+            flowerquantity="10"
+            baseflowerscale="0.35"
+            vinescale="0.25"
+            flowertint="255,54,0,255"
+            vinetint="244,172,132,255">
+
+            <!-- 收成物：95% 橘果，5% 壞果 -->
+            <ProducedItem identifier="creepingorange" probability="0.95" />
+            <ProducedItem identifier="badcreepingorange" probability="0.05" />
+
+            <!-- 藤蔓與葉、花貼圖 -->
+            <VineSprites vineatlas="Content/Items/Gardening/branches.png"
+                decayatlas="Content/Items/Gardening/branches_overlay.png">
+                <LeafSprite texture="Content/Items/Gardening/GrowablePlants_Temp.png"
+                    sourcerect="0,0,256,256" />
+                <!-- 省略其它 leaf/flower/vine sprite 定義… -->
+            </VineSprites>
+        </Growable>
+    </Item>
+
+    <!-- 二、花盆定義（GardeningToolsExample.xml）-->
+
+    <!-- 小型花盆 -->
+    <Item identifier="smallplanter"
+        category="Misc"
+        tags="planter,mediumitem,dontsellitems"
+        scale="0.5">
+        <!-- 外觀與物理 -->
+        <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png"
+            sourcerect="896,384,128,128"
+            origin="0.5,0.5" depth="0.75" />
+        <Body width="95" height="106" density="25" />
+
+        <!-- 隱藏的種子槽 -->
+        <ItemContainer capacity="1"
+            maxstacksize="1"
+            hideitems="true"
+            drawinventory="false"
+            allowdraganddrop="false">
+            <Containable items="seed" />
+        </ItemContainer>
+
+        <!-- 播種行為 -->
+        <Planter selectkey="Select"
+            canbepicked="true"
+            pickingtime="5.0"
+            msg="ItemMsgPlantSeed">
+            <!-- 插槽位置與大小 -->
+            <PlantSlot slot="0" offset="0,32" size="0.25" />
+            <!-- 可用的種子與肥料 -->
+            <SuitableSeed items="seed" />
+            <SuitableFertilizer items="fertilizer" />
+        </Planter>
+    </Item>
+
+    <!-- 澆水壺 -->
+    <Item identifier="wateringcan"
+        category="Misc"
+        tags="smallitem,tool"
+        scale="0.5">
+        <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png"
+            sourcerect="896,0,128,128"
+            origin="0.5,0.5" depth="0.55" />
+        <Body width="121" height="96" density="15" />
+
+        <Holdable slots="Any,RightHand+LeftHand"
+            aimpos="60,0"
+            holdangle="45"
+            handle1="-50,20"
+            handle2="-30,52"
+            msg="ItemMsgPickUpSelect" />
+
+        <!-- 澆水功能 -->
+        <RepairTool wateramount="100.0" range="0" barrelpos="28,11">
+            <ParticleEmitter particle="waterdrop"
+                velocitymin="10" velocitymax="50"
+                particlespersecond="50" />
+        </RepairTool>
+    </Item>
+
+    <!-- 肥料 -->
+    <Item identifier="fertilizer"
+        category="Misc"
+        tags="fertilizer,smallitem"
+        scale="0.5">
+        <Sprite texture="Content/Items/Gardening/GrowablePlants_Temp.png"
+            sourcerect="910,128,87,125"
+            origin="0.5,0.5" depth="0.55" />
+        <Body width="85" height="122" density="25" />
+
+        <Holdable slots="Any,RightHand,LeftHand"
+            holdangle="95"
+            handle1="-20,55"
+            msg="ItemMsgPickUpSelect">
+            <StatusEffect type="OnBroken" target="This">
+                <Remove />
+            </StatusEffect>
+        </Holdable>
+    </Item>
+</Items>
+<!--
+三、重點整理
+
+    1. 種子 (<Growable>)
+    – growthspeed／pickingtime／maximumvines… 定義生長與採收行為
+    – <ProducedItem> 列出可收成物及機率
+    – <VineSprites> 內建葉、花、藤蔓貼圖
+
+    2. 花盆 (<Planter> + <ItemContainer>)
+    – ItemContainer 隱藏一槽用來暫存「種子」
+    – <Planter> 定義插槽位置、可接受種子、肥料
+
+    3. 澆水 (<RepairTool>)
+    – 對植物澆水即是「修復」操作，可加 ParticleEmitter 特效
+
+    4. 肥料
+    – 只需定義 Holdable，並在 <Planter> 用 SuitableFertilizer 指向
+
+去掉 autoinject，即可得到官方範例常見的「栽培系統」結構。你只要照此骨架，替換 Identifier、貼圖、數值，就能定義自家植物與工具！
+-->
