@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPackage name="Character Info Panel" modversion="1.0" gameversion="1.8.8.0">
+    <Other file="Lua/Autorun/CharacterInfoPanel.lua" />
+</ContentPackage>
